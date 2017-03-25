@@ -4,6 +4,7 @@ import PostService from "../services/post.service";
 
 @Component({
   selector: 'newComment',
+  inputs: [ 'dataPost' ],
   template: `<form>
                 <input [(ngModel)]="data.author" placeholder="Author" name="author">
                 <textarea [(ngModel)]="data.body" placeholder="Comment" name="comment"></textarea>
@@ -18,6 +19,7 @@ export default class NewCommentComponent {
   }
 
   ngOnInit() {
+    this.dataPost = {}
     this.route.params.subscribe(params => {
       this.id = params.id;
     });
@@ -25,6 +27,7 @@ export default class NewCommentComponent {
 
   create_comment() {
     this.postService.createComment(this.id, this.data)
+    this.dataPost.comments.push(this.data)
     this.data = {}
   }
 }

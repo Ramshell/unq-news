@@ -31,12 +31,12 @@ export default class PostService {
             .catch(err => console.log(err))
   }
 
-  createComment(id, data){
+  createComment(id, data, post){
     this.http.post(`/news/${id}/comments`, JSON.stringify(data), { headers:{'Content-Type': 'application/json'}})
             .toPromise()
-            .then(response =>
-              console.log(response.json())
-            )
+            .then(response => {
+              post.comments.push(data)
+            })
             .catch(err => console.log(err))
   }
 }

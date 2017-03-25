@@ -22,3 +22,32 @@ article footer {
   font-size: 0.7em;
   text-align: right;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+textarea {
+	border: solid 1px #dcdcdc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	transition: box-shadow 0.3s, border 0.3s;
+}
+
+textarea.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+input {
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+input.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}

@@ -6,10 +6,10 @@ import PostService from "../services/post.service"
   selector: 'postDetail',
   inputs: [ 'post' ],
   template: `<post [data]="post"></post>
-              <newComment></newComment>
 
             <h2>Comentarios:</h2>
             <comment *ngFor="let comment of post.comments" [data]="comment"></comment>
+            <newComment [dataPost]="post"></newComment>
             <a [routerLink]="['/news']">Atras</a>`
 })
 
