@@ -18,6 +18,7 @@ export default class CommentComponent {
   }
 
   upvote(){
+    console.log(this.data)
     this.postService.upvoteComment(this.data)
   }
 }

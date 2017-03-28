@@ -65,10 +65,11 @@ router.post('/news/:aNew/comments', (req, res, next) => {
   comment.save()
     .then(savedComment => {
       someNew.comments.push(savedComment) //Shouldn't this be automated?
+      someNew.save()
 
-      return someNew.save()
+      return savedComment
     })
-    .then(noticiaGuardada => res.json(noticiaGuardada))
+    .then(comentarioGuardada => res.json(comentarioGuardada))
     .catch(next)
 })
 

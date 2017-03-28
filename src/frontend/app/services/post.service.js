@@ -31,11 +31,11 @@ export default class PostService {
             .catch(err => console.log(err))
   }
 
-  createComment(id, data, post){
-    this.http.post(`/news/${id}/comments`, JSON.stringify(data), { headers:{'Content-Type': 'application/json'}})
+  createComment(post, data){
+    this.http.post(`/news/${post._id}/comments`, JSON.stringify(data), { headers:{'Content-Type': 'application/json'}})
             .toPromise()
             .then(response => {
-              post.comments.push(data)
+              post.comments.push(response.json())
             })
             .catch(err => console.log(err))
   }
@@ -50,7 +50,8 @@ export default class PostService {
   }
 
   upvoteComment(comment) {
-    this.http.put(`/news/${comment.post}/comments/${comment._id}/upvote`)
+    const postId = comment.post._id || comment.post
+    this.http.put(`/news/${postId}/comments/${comment._id}/upvote`)
             .toPromise()
             .then(response => {
               comment.upvotes++;

@@ -26,8 +26,7 @@ export default class NewCommentComponent {
   }
 
   create_comment() {
-    this.postService.createComment(this.id, this.data)
-    this.dataPost.comments.push(this.data)
+    this.postService.createComment(this.dataPost, this.data)
     this.data = {}
   }
 }
