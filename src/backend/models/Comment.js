@@ -9,6 +9,10 @@ const commentSchema = new mongoose.Schema({
   post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
 })
 
+commentSchema.methods.upvote = function() {
+  this.upvotes++
+}
+
 const Comment = mongoose.model('Comment', commentSchema)
 
 export default Comment

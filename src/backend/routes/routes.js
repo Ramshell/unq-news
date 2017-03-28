@@ -16,6 +16,18 @@ router.param('aNew', (req, res, next, value) => {
     .catch(next)
 })
 
+router.param('aComment', (req, res, next, value) => {
+  Comment.findById(value)
+    .then(aComment => {
+      if (! aComment ) {
+        throw new Error(`Couldn't find new ${value}`)
+      }
+      req.aComment = aComment
+      next()
+    })
+    .catch(next)
+})
+
 // Express routes
 router.get('/news', (req, res, next) => {
   Post.find()
@@ -57,6 +69,14 @@ router.post('/news/:aNew/comments', (req, res, next) => {
       return someNew.save()
     })
     .then(noticiaGuardada => res.json(noticiaGuardada))
+    .catch(next)
+})
+
+router.put('/news/:aNew/comments/:aComment/upvote', (req, res, next) => {
+  const aComment = req.aComment
+  aComment.upvote()
+  aComment.save()
+    .then(savedComment => res.json(savedComment))
     .catch(next)
 })
 

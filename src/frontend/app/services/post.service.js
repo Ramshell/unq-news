@@ -39,6 +39,24 @@ export default class PostService {
             })
             .catch(err => console.log(err))
   }
+
+  upvote(post) {
+    this.http.put(`/news/${post._id}/upvote`)
+            .toPromise()
+            .then(response => {
+              post.upvotes++;
+            })
+            .catch(err => console.log(err))
+  }
+
+  upvoteComment(comment) {
+    this.http.put(`/news/${comment.post}/comments/${comment._id}/upvote`)
+            .toPromise()
+            .then(response => {
+              comment.upvotes++;
+            })
+            .catch(err => console.log(err))
+  }
 }
 
 PostService.parameters = [

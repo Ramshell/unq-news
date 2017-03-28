@@ -51,3 +51,11 @@ input.focus {
   border: solid 1px #707070;
   box-shadow: 0 0 5px 1px #969696;
 }
+
+.comment{
+  border: solid 1px black;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: #00AA60;
+}

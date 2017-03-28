@@ -10,6 +10,7 @@ import PostService from "../services/post.service"
             <h2>Comentarios:</h2>
             <comment *ngFor="let comment of post.comments" [data]="comment"></comment>
             <newComment [dataPost]="post"></newComment>
+            <button type="button" (click)="upvote()">Vote</button>
             <a [routerLink]="['/news']">Atras</a>`
 })
 
@@ -31,6 +32,9 @@ export default class PostDetailComponent {
     });
   }
 
+  upvote() {
+    this.postService.upvote(this.post);
+  }
 }
 
 PostDetailComponent.parameters = [
